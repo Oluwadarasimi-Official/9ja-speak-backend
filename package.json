@@ -1,0 +1,1 @@
+{"description":"9Ja Speak — Nigerian multilingual AI companion API (Your AI. Your Language. Your Voice.)","engines":{"node":">=18"},"license":"UNLICENSED","main":"api/health.js","name":"9ja-speak-backend","scripts":{"start":"node local-server.js","test":"node --test tests/"},"version":"1.0.0"}
