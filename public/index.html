@@ -70,48 +70,94 @@
 </section>
 
 <!-- ============ CHAT ============ -->
-<section id="chat" class="screen" hidden>
-  <header class="topbar glass">
-    <div class="peer">
-      <div id="c-avatar" class="avatar">🦁</div>
-      <div class="peer-meta">
-        <div id="c-name" class="peer-name">Ayo</div>
-        <div id="c-status" class="peer-status">online</div>
+<section id="chat" class="screen chat-screen" hidden>
+  <div id="backdrop" class="backdrop" hidden></div>
+
+  <aside id="sidebar" class="sidebar glass" aria-label="Conversations">
+    <div class="side-head">
+      <div class="side-brand">
+        <div class="logo sm">9J<span>a</span></div>
+        <div class="side-brand-text"><b>9Ja Speak</b><span>Your AI. Your Language.</span></div>
       </div>
+      <button id="side-close" class="icon-btn" title="Close">✕</button>
     </div>
-    <div class="top-actions">
-      <div class="select-wrap sm">
-        <select id="c-lang" aria-label="Language mode">
-          <option value="auto">✨ Auto</option>
-          <option value="yo">Yoruba</option>
-          <option value="ha">Hausa</option>
-          <option value="en">English</option>
-          <option value="en-NG">Naija Eng</option>
-          <option value="pcm">Pidgin</option>
-        </select>
+    <button id="new-chat" class="btn-new"><span>＋</span> New chat</button>
+    <div class="search-wrap">
+      <span aria-hidden="true">⌕</span>
+      <input id="convo-search" type="text" placeholder="Search chats…" aria-label="Search conversations" autocomplete="off">
+    </div>
+    <nav id="convo-list" class="convo-list" aria-label="Chat history"></nav>
+    <div class="side-foot">
+      <div class="side-profile">
+        <div id="side-avatar" class="avatar sm">🦁</div>
+        <div class="side-profile-meta"><b id="side-username">You</b><span id="side-ainame">Ayo</span></div>
       </div>
-      <button id="c-theme" class="icon-btn" title="Toggle light / dark">☾</button>
-      <button id="c-menu-btn" class="icon-btn" title="Menu">⋯</button>
+      <button id="side-reset" class="ghost-btn" title="Start over with a new companion">↺ New companion</button>
     </div>
-    <div id="c-menu" class="menu glass" hidden>
-      <button id="m-provider">◈ Provider status</button>
-      <button id="m-tts">🔊 Read replies aloud: <b id="m-tts-state">off</b></button>
-      <button id="m-temp">🕵 Temporary chat: <b id="m-temp-state">off</b></button>
-      <button id="m-clear">🗑 Clear this chat</button>
-      <button id="m-reset">↺ Start over (new companion)</button>
+  </aside>
+
+  <div class="main">
+    <header class="topbar glass">
+      <button id="hamburger" class="icon-btn" title="Conversations">☰</button>
+      <div class="peer">
+        <div id="c-avatar" class="avatar">🦁</div>
+        <div class="peer-meta">
+          <div id="c-name" class="peer-name">Ayo</div>
+          <div id="c-status" class="peer-status">online</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="prov-chip" class="prov-chip" title="AI provider status"><span class="dot"></span><span id="prov-label">…</span></button>
+        <div class="select-wrap sm">
+          <select id="c-lang" aria-label="Language mode">
+            <option value="auto">✨ Auto</option>
+            <option value="yo">Yoruba</option>
+            <option value="ha">Hausa</option>
+            <option value="en">English</option>
+            <option value="en-NG">Naija Eng</option>
+            <option value="pcm">Pidgin</option>
+          </select>
+        </div>
+        <button id="c-theme" class="icon-btn" title="Toggle light / dark">☾</button>
+        <button id="c-menu-btn" class="icon-btn" title="Menu">⋯</button>
+      </div>
+      <div id="c-menu" class="menu glass" hidden>
+        <button id="m-tts">🔊 Read replies aloud: <b id="m-tts-state">off</b></button>
+        <button id="m-temp">🕵 Temporary chat: <b id="m-temp-state">off</b></button>
+        <button id="m-clear">🗑 Clear this chat</button>
+      </div>
+    </header>
+
+    <div id="provider-bar" class="provider-bar" hidden></div>
+
+    <main id="messages" class="messages" aria-live="polite"></main>
+    <button id="jump" class="jump-btn glass" hidden title="Scroll to bottom">↓</button>
+
+    <div class="composer-zone">
+      <div id="attach-preview" class="attach-preview" hidden></div>
+      <div id="composer" class="composer glass">
+        <button id="attach" class="icon-btn" title="Attach an image">＋</button>
+        <textarea id="input" rows="1" placeholder="Message Ayo…" aria-label="Message"></textarea>
+        <button id="mic" class="icon-btn mic" title="Voice input">🎙</button>
+        <button id="send" class="send-btn" title="Send">➤</button>
+      </div>
+      <p class="disclaimer">9Ja Speak can make mistakes. Check important info.</p>
     </div>
-  </header>
-
-  <div id="provider-bar" class="provider-bar" hidden></div>
-
-  <main id="messages" class="messages" aria-live="polite"></main>
-
-  <div id="composer" class="composer glass">
-    <button id="mic" class="icon-btn mic" title="Voice input">🎙</button>
-    <textarea id="input" rows="1" placeholder="Message Ayo… (Yoruba, Hausa, Pidgin — anything)" aria-label="Message"></textarea>
-    <button id="send" class="send-btn" title="Send">➤</button>
+    <input type="file" id="file-input" accept="image/*" multiple hidden>
   </div>
+
   <div id="toast" class="toast" hidden></div>
+
+  <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <div id="modal" class="modal glass" role="dialog" aria-modal="true">
+      <h3 id="modal-title"></h3>
+      <div id="modal-body"></div>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="ghost-btn">Cancel</button>
+        <button id="modal-ok" class="btn-primary sm">Confirm</button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script src="app.js"></script>
