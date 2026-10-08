@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1014">
+<meta name="description" content="9Ja Speak — Your AI. Your Language. Your Voice. A Nigerian multilingual AI companion.">
+<title>9Ja Speak — Your AI. Your Language. Your Voice.</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="orbs" aria-hidden="true"><span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span></div>
+
+<!-- ============ WELCOME / ONBOARDING ============ -->
+<section id="welcome" class="screen">
+  <div class="welcome-card glass">
+    <div class="brand">
+      <div class="logo">9J<span>a</span></div>
+      <div>
+        <h1>9Ja Speak</h1>
+        <p class="tagline">Your AI. Your Language. Your Voice.</p>
+      </div>
+    </div>
+
+    <p class="lede">Meet an AI companion that speaks like you do — Yoruba, Hausa, English, Nigerian English, Pidgin, and every mix in between.</p>
+
+    <label class="field">
+      <span>Your name</span>
+      <input id="w-name" type="text" maxlength="40" placeholder="e.g. David" autocomplete="name">
+    </label>
+
+    <div class="row2">
+      <label class="field">
+        <span>AI name</span>
+        <input id="w-ainame" type="text" maxlength="40" placeholder="e.g. Ayo" value="Ayo">
+      </label>
+      <label class="field">
+        <span>Nickname <em>(optional)</em></span>
+        <input id="w-nick" type="text" maxlength="40" placeholder="e.g. Ayomi">
+      </label>
+    </div>
+
+    <div class="field">
+      <span>AI avatar</span>
+      <div id="w-avatars" class="avatar-pick" role="radiogroup" aria-label="Choose an avatar"></div>
+    </div>
+
+    <div class="field">
+      <span>Primary language</span>
+      <div class="select-wrap">
+        <select id="w-lang">
+          <option value="auto" selected>✨ Auto detect</option>
+          <option value="yo">Yoruba</option>
+          <option value="ha">Hausa</option>
+          <option value="en">English</option>
+          <option value="en-NG">Nigerian English</option>
+          <option value="pcm">Nigerian Pidgin</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <span>Personality <em>(pick a few)</em></span>
+      <div id="w-traits" class="chips"></div>
+    </div>
+
+    <button id="w-start" class="btn-primary">Start chatting →</button>
+    <p class="fine">Chats stay in this browser. Nothing is faked — if the AI brain isn't connected yet, you'll be told plainly.</p>
+  </div>
+</section>
+
+<!-- ============ CHAT ============ -->
+<section id="chat" class="screen" hidden>
+  <header class="topbar glass">
+    <div class="peer">
+      <div id="c-avatar" class="avatar">🦁</div>
+      <div class="peer-meta">
+        <div id="c-name" class="peer-name">Ayo</div>
+        <div id="c-status" class="peer-status">online</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div class="select-wrap sm">
+        <select id="c-lang" aria-label="Language mode">
+          <option value="auto">✨ Auto</option>
+          <option value="yo">Yoruba</option>
+          <option value="ha">Hausa</option>
+          <option value="en">English</option>
+          <option value="en-NG">Naija Eng</option>
+          <option value="pcm">Pidgin</option>
+        </select>
+      </div>
+      <button id="c-theme" class="icon-btn" title="Toggle light / dark">☾</button>
+      <button id="c-menu-btn" class="icon-btn" title="Menu">⋯</button>
+    </div>
+    <div id="c-menu" class="menu glass" hidden>
+      <button id="m-provider">◈ Provider status</button>
+      <button id="m-tts">🔊 Read replies aloud: <b id="m-tts-state">off</b></button>
+      <button id="m-temp">🕵 Temporary chat: <b id="m-temp-state">off</b></button>
+      <button id="m-clear">🗑 Clear this chat</button>
+      <button id="m-reset">↺ Start over (new companion)</button>
+    </div>
+  </header>
+
+  <div id="provider-bar" class="provider-bar" hidden></div>
+
+  <main id="messages" class="messages" aria-live="polite"></main>
+
+  <div id="composer" class="composer glass">
+    <button id="mic" class="icon-btn mic" title="Voice input">🎙</button>
+    <textarea id="input" rows="1" placeholder="Message Ayo… (Yoruba, Hausa, Pidgin — anything)" aria-label="Message"></textarea>
+    <button id="send" class="send-btn" title="Send">➤</button>
+  </div>
+  <div id="toast" class="toast" hidden></div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
